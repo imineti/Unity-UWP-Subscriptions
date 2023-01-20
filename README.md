@@ -17,7 +17,8 @@ hasSubscription = false; // false until we check
 ```
 \
 \
-In your code you need a method to check for subscriptions you will want a seperate method to check for UWPsubscriptions
+In your code you need a method to check for subscriptions  
+you also need a seperate method to check for UWPsubscriptions which uses async
 ```
 public void CheckSubscriptions()
 {
