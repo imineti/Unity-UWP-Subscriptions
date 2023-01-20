@@ -8,10 +8,11 @@ In your code create a reference to a new instance of the MicrosoftStoreSubscript
 you also need some bools to check if subscribed (each product should have its own bool unless like me all subscriptions unlock the same features)
 
 ```
-hasSubscription = false; // false until we check
 MicrosoftStoreSubscription _mss = new MicrosoftStoreSubscription(); // Reference to a new instance of MicrosoftStoreSubscription class
 string _mss_monthSub_ID = "KD840SJDI483"; // these are random letters and numbers swap these for your actual subscription product ID
 string _mss_yearSub_ID = "LE492UDN49WI"; // these are random letters and numbersswap these for your actual subscription product ID
+
+hasSubscription = false; // false until we check
 ```
 
 In your code you should have a method to check subscriptions
@@ -68,3 +69,6 @@ public async void BuySubscription_OneYear()
 #endif
 }
 ```
+
+If you feel lead to buy me a coffee my paypal is kperil94@gmail.com
+and my cashapp is £STR4NGEWAYS (the first A is a 4)
