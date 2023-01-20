@@ -31,20 +31,19 @@ public void CheckSubscriptions()
 
 public async void CheckSubscriptionsUWPAsync()
 {
-    hasMegaMintSubscription = await _mss.CheckIfUserHasSubscription(_mss_monthSub_ID);
-    if (hasMegaMintSubscription)
+    hasSubscription = await _mss.CheckIfUserHasSubscription(_mss_yearSub_ID);
+    if (hasSubscription)
     {
-        megaMintSubscriptionExpiryDate = _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
-        UpdateSubscriptionWindowTab();
-        return;
+        //----Has subscription, do stuff
+        // You can get the DateTime of the expiry date using _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
+        return; // I only use return because like I said both my subscriptions unlock the same features so there's no point checking the next one
     }
 
-    hasMegaMintSubscription = await _mss.CheckIfUserHasSubscription(_mss_yearSub_ID);
-    if (hasMegaMintSubscription)
+    hasSubscription = await _mss.CheckIfUserHasSubscription(_mss_monthSub_ID);
+    if (hasSubscription)
     {
-        megaMintSubscriptionExpiryDate = _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
-        UpdateSubscriptionWindowTab();
-        return;
+        //----Has subscription, do stuff
+        // You can get the DateTime of the expiry date using _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
     }
 }
 ```
