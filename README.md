@@ -1,18 +1,13 @@
 # Unity-UWP-Subscriptions
 Support for Unity UWP Subscriptions  
-\
 If you feel lead to buy me a beer or a pizza my paypal is kperil94@gmail.com and my cashapp is £STR4NGEWAYS
-\
-\
 \
 \
 Make sure to place the MicrosoftStoreSubscription.cs script somewhere in your project where it can be referenced by the assembly
 \
 \
-\
-\
-In your code create a reference to a new instance of the MicrosoftStoreSubscription Class and create some strings for your UWP subscription product ID's  
-you also need some bools to check if subscribed (each product should have its own bool unless like me all subscriptions unlock the same features)  
+In your code create a reference to a new instance of the MicrosoftStoreSubscription Class and create some strings for your UWP subscription product ID's, you also need some bools to check if subscribed  
+(each product should have its own bool unless like me all subscriptions unlock the same features)  
 ```
 MicrosoftStoreSubscription _mss = new MicrosoftStoreSubscription(); // Reference to a new instance of MicrosoftStoreSubscription class
 string _mss_monthSub_ID = "KD840SJDI483"; // these are random letters and numbers swap these for your actual subscription product ID
