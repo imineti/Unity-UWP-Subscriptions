@@ -1,5 +1,8 @@
 # Unity-UWP-Subscriptions
 Support for Unity UWP Subscriptions
+If you feel lead to buy me a beer or a pizza my paypal is kperil94@gmail.com
+and my cashapp is £STR4NGEWAYS
+
 
 
 Make sure to place the MicrosoftStoreSubscription.cs script somewhere in your project where it can be referenced by the assembly
@@ -69,6 +72,3 @@ public async void BuySubscription_OneYear()
 #endif
 }
 ```
-
-If you feel lead to buy me a coffee my paypal is kperil94@gmail.com
-and my cashapp is £STR4NGEWAYS
