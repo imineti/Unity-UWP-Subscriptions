@@ -8,7 +8,10 @@ and my cashapp is £STR4NGEWAYS
 
 Make sure to place the MicrosoftStoreSubscription.cs script somewhere in your project where it can be referenced by the assembly
 
+
+
 In your code create a reference to a new instance of the MicrosoftStoreSubscription class and create some strings for your UWP subscription product ID's
+
 you also need some bools to check if subscribed (each product should have its own bool unless like me all subscriptions unlock the same features)
 
 ```
