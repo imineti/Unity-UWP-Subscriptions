@@ -11,7 +11,7 @@ public class MicrosoftStoreSubscription
 #if ((UNITY_WSA && !UNITY_EDITOR) && ENABLE_WINMD_SUPPORT)
     private StoreContext context = StoreContext.GetDefault();
 #endif
-    public DateTimeOffset _expirationDateOfLastCheckedSubscription = DateTimeOffset.Now;
+    public DateTimeOffset expirationDateOfLastCheckedSubscription = DateTimeOffset.Now;
 
     public async Task<bool> CheckIfUserHasSubscription(string _subscriptionStoreId)
     {
@@ -47,7 +47,7 @@ public class MicrosoftStoreSubscription
                 if (license.IsActive)
                 {
                     // The expiration date is available in the license.ExpirationDate property.
-                    _expirationDateOfLastCheckedSubscription = license.ExpirationDate;
+                    expirationDateOfLastCheckedSubscription = license.ExpirationDate;
                     return true;
                 }
             }
@@ -117,8 +117,6 @@ public class MicrosoftStoreSubscription
                 case StorePurchaseStatus.Succeeded:
                     // Show a UI to acknowledge that the customer has purchased your subscription 
                     // and unlock the features of the subscription.
-                    acRef.appController.hasMegaMintSubscription = true;
-                    acRef.appController.UpdateSubscriptionWindowTab();
                     Debug.LogError("PromptUserToPurchaseAsync: Purchase successful");
                     break;
 
@@ -131,16 +129,43 @@ public class MicrosoftStoreSubscription
                 case StorePurchaseStatus.NetworkError:
                     Debug.LogError("The purchase was unsuccessful due to a server or network error. " +
                         "ExtendedError: " + extendedError);
-                        acRef.appController.OpenMessage("Network error");
                     break;
 
                 case StorePurchaseStatus.AlreadyPurchased:
                     Debug.LogError("The customer already owns this subscription." +
                             "ExtendedError: " + extendedError);
-                    acRef.appController.OpenMessage("You already own this subscription");
                     break;
             }
         }
     }
 #endif
+
+    public DateTime DateTimeOffsetToDateTime(DateTimeOffset _sourceTime)
+    {
+        DateTime _baseTime = DateTime.Now;
+        DateTime _targetTime;
+
+        // Convert UTC to DateTime value
+        _sourceTime = new DateTimeOffset(_baseTime, TimeSpan.Zero);
+        _targetTime = _sourceTime.DateTime;
+
+        // Convert local time to DateTime value
+        _sourceTime = new DateTimeOffset(_baseTime,
+                                        TimeZoneInfo.Local.GetUtcOffset(_baseTime));
+        _targetTime = _sourceTime.DateTime;
+
+        // Convert Central Standard Time to a DateTime value
+        try
+        {
+            TimeSpan offset = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time").GetUtcOffset(_baseTime);
+            _sourceTime = new DateTimeOffset(_baseTime, offset);
+            _targetTime = _sourceTime.DateTime;
+            return _targetTime;
+        }
+        catch (TimeZoneNotFoundException)
+        {
+            Debug.Log("Unable to create DateTimeOffset based on U.S. Central Standard Time.");
+            return DateTime.MinValue;
+        }
+    }
 }
