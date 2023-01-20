@@ -71,4 +71,4 @@ public async void BuySubscription_OneYear()
 ```
 
 If you feel lead to buy me a coffee my paypal is kperil94@gmail.com
-and my cashapp is £STR4NGEWAYS (the first A is a 4)
+and my cashapp is £STR4NGEWAYS
