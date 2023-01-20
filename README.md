@@ -17,31 +17,34 @@ hasSubscription = false; // false until we check
 ```
 \
 \
-In your code you should have a method to check subscriptions
+In your code you need a method to check for subscriptions you will want a seperate method to check for UWPsubscriptions
 ```
-public async void CheckSubscriptions()
+public void CheckSubscriptions()
 {
 #if ((UNITY_WSA && !UNITY_EDITOR) && ENABLE_WINMD_SUPPORT)
-    hasSubscription = await _mss.CheckIfUserHasSubscription(_mss_yearSub_ID);
-    
-    if (hasSubscription)
-    {
-        //----if has this subscription do stuff
-        // you can also get the DateTime of the expiration date with _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
-        return; // remove this if you still need to check the other subscriptions (I don't because all my subscriptions unlock the same features)
-    }
-    
-    hasSubscription = await _mss.CheckIfUserHasSubscription(_mss_monthSub_ID);
-
-    if (hasSubscription)
-    {
-        //----if has this subscription do stuff
-        // you can also get the DateTime of the expiration date with _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
-        return; // remove this if you still need to check the other subscriptions (I don't because all my subscriptions unlock the same features)
-    }
+    CheckSubscriptionsUWPAsync();
 #else
     // This is where your standard Unity IAP subscription check goes (if you need), unity IAP subscriptions already work on other platforms just not UWP
 #endif
+}
+
+public async void CheckSubscriptionsUWPAsync()
+{
+    hasMegaMintSubscription = await _mss.CheckIfUserHasSubscription(_mss_monthSub_ID);
+    if (hasMegaMintSubscription)
+    {
+        megaMintSubscriptionExpiryDate = _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
+        UpdateSubscriptionWindowTab();
+        return;
+    }
+
+    hasMegaMintSubscription = await _mss.CheckIfUserHasSubscription(_mss_yearSub_ID);
+    if (hasMegaMintSubscription)
+    {
+        megaMintSubscriptionExpiryDate = _mss.DateTimeOffsetToDateTime(_mss.expirationDateOfLastCheckedSubscription);
+        UpdateSubscriptionWindowTab();
+        return;
+    }
 }
 ```
 \
