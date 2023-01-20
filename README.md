@@ -16,7 +16,7 @@ In your code create a reference to a new instance of the MicrosoftStoreSubscript
 
 
 
-    /----Check subscriptions to see if hasSubscription should be true
+    //----Check subscriptions to see if hasSubscription should be true
     // In my case you can have a yearly OR monthly subscription and since a yearly subscription lasts longer I will return if they have it because there would be
     // no point checking for a monthly subscription when I already have the information I need
     // BUT if I had multiple subscriptions for different things within the app I would check them all and set unique bool variables for them all
