@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Windows.Services.Store;
 #endif
 
+// I used Debug.LogError() in this script so that if you build the UWP in Debug the logs will pop up in the UWP debug console
+// Debug.Log doesn't show up in the UWP debug console
 public class MicrosoftStoreSubscription
 {
 #if ((UNITY_WSA && !UNITY_EDITOR) && ENABLE_WINMD_SUPPORT)
