@@ -55,7 +55,7 @@ public async void BuySubscription_OneMonth()
 {
 #if ((UNITY_WSA && !UNITY_EDITOR) && ENABLE_WINMD_SUPPORT)
     await _mss.PromptUserToPurchase(_mss_monthSub_ID);
-    await CheckSubscriptions();
+    CheckSubscriptions();
 #else
     // This is where your standard Unity IAP subscription purchase goes (if you use it)
     // Unity IAP subscriptions already work on other platforms
@@ -66,7 +66,7 @@ public async void BuySubscription_OneYear()
 {
 #if ((UNITY_WSA && !UNITY_EDITOR) && ENABLE_WINMD_SUPPORT)
     await _mss.PromptUserToPurchase(_mss_yearSub_ID);
-    await CheckSubscriptions();
+    CheckSubscriptions();
 #else
     // This is where your standard Unity IAP subscription purchase goes (if you use it)
     // Unity IAP subscriptions already work on other platforms
